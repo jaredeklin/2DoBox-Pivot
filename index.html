@@ -1,9 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>HI</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Roboto+Slab:700" rel="stylesheet">
+  <title>ideabox</title>
 </head>
+
 <body>
+
+<section class="banner" role="banner">
+  <article class="banner-content">
+    <h1>idea<span class="h1-style">box</span></h1>
+    <label for="idea-title"></label>
+    <input type="text" placeholder="Title" class="idea-title">
+    <label for="idea-content"></label>
+    <input type="text" placeholder="Body" class="idea-content">
+    <label for="save-button"></label>
+    <input type="submit" value="Save" class="save-button">
+  </article>
+</section>
+
+<section role="main">
+  <article class="search-bar">
+    <label for="search-bar"></label>
+    <input type="search" placeholder="Search">
+  </article>
+
+  <article id="idea-box">
+    <h2>Example Idea 1</h2>
+    <label for="delete-button"></label>
+    <input type="image" role="button" class="delete-button" src="images/delete.svg">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <label for="up-vote-button"></label>
+    <input type="image" role="button" class="up-vote-button" src="images/upvote.svg">
+    <label for="down-vote-button"></label>
+    <input type="image" role="button" class="down-vote-button" src="image/downvote.svg">
+    <p>quality: <span class="quality-value">swill</span></p>
+    <hr>
 
 </body>
 </html>
