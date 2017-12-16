@@ -1,0 +1,58 @@
+html {
+  font-size: 12px;
+}
+
+* {
+margin:0;
+padding:0;
+border:0;
+}
+
+body {
+  font-family: "Open Sans", serif;
+}
+
+/*All stylings for banner*/
+.banner {
+  background-color: #E5F3F2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.banner-content {
+
+}
+
+h1 {
+  color: #00A79D;
+  font-family: "Roboto Slab", serif;
+  font-size: 3rem;
+}
+
+.h1-style {
+  color: #6D6E71;
+}
+
+.idea-title,
+.idea-content {
+  font-size: 1.5rem;
+  width: 60%;
+  color: #939598;
+}
+
+.save-button {
+  color: #00A79D;
+  display: block;
+  width: 60%;
+}
+
+input[type=image] {
+  height: 20px;
+  width: 20px;
+}
+
+
+
+
