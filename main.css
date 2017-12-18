@@ -18,17 +18,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  height: 350px;
 }
 
 .banner-content {
-
+  align-self: center;
+  width: 70%;
 }
 
 h1 {
   color: #00A79D;
   font-family: "Roboto Slab", serif;
-  font-size: 3rem;
+  font-size: 5rem;
+  margin: 4% 32% 5% 0;
 }
 
 .h1-style {
@@ -36,22 +38,96 @@ h1 {
 }
 
 .idea-title,
-.idea-content {
+.idea-content,
+.search-bar {
   font-size: 1.5rem;
-  width: 60%;
   color: #939598;
+  width: 60%;
+  align-self: center;
+  margin: 0 0 2% 17%;
+  box-shadow: 0 0 0 .2rem rgba(187,189,191,0.3);
+  padding: 0.2% 0.5%;
+  border: solid #D1D3D4 0.5px;
+  letter-spacing: .05rem
+}
+
+input::placeholder {
+  color: rgb(187,189,191);
 }
 
 .save-button {
-  color: #00A79D;
+  background-color: #00A79D;
+  color: #FFFFFF;
   display: block;
-  width: 60%;
+  width: 61%;
+  margin-left: 17%;
+  padding: 1% 0;
+  font-size: 1.5rem;
 }
-
-input[type=image] {
+/*Resizing delete, up vote, & down vote buttons*/
+img {
   height: 20px;
   width: 20px;
 }
+
+.idea-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#idea-box {
+  position: relative;
+  box-sizing: content-box;
+  width: 33%;
+}
+
+h2 {
+  color: #6D6E71;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.25rem;
+}
+
+.delete-button {
+  position: absolute;
+  top: .55rem;
+  right: .55rem;
+}
+
+.idea-details {
+  color: #939598;
+  text-align: justify;
+  padding: 1rem 0 1rem 0;
+}
+
+.upvote-button {
+  padding-right: 1rem;
+/*  background: url("images/upvote.svg") no-repeat;
+*/
+}
+
+.upvote-button:hover {
+  background: url("images/upvote-hover.svg") no-repeat;
+}
+
+.idea-quality {
+  position: absolute;
+  top: 9rem;
+  left: 6rem;
+  color: #6D6E71;
+}
+
+hr {
+  height: 1px;
+  background-color: #D1D3D4;
+  border: none;
+  margin: 1rem 0 1rem 0;
+}
+
+
+
+
+
 
 
 
