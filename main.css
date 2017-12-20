@@ -76,7 +76,7 @@ img {
   flex-direction: column;
 }
 
-#idea-box {
+.unique-id {
   position: relative;
   box-sizing: content-box;
   width: 33%;
