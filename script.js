@@ -21,6 +21,7 @@ $saveButton.on('click', function(){
   console.log($ideaTitle, $ideaContent);
   var newCard = new Card($ideaTitle.val(), $ideaContent.val());
   newCard.createCard();
+  addToStorage(newCard);
 })
 
 
@@ -39,18 +40,36 @@ function Card(title, body) {
 }
 
 Card.prototype.createCard = function () {
-  $ideaList.append(`<article class="unique-id" id="${this.uniqueId}">
+  $ideaList.append(`<article class="unique-id-style" id="${this.uniqueId}">
     <h2>${this.title}</h2>
     <img class="delete-button" src="images/delete.svg" alt="delete-idea">
     <p class="idea-details">${this.body}</p>
     <img class="upvote-button" src="images/upvote.svg" alt="upvote-idea">
     <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
-    <p class="idea-quality"><span class="quality-value"></span></p>
+    <p class="idea-quality"><span class="quality-value">${this.quality}</span></p>
     <hr>
     </article>`);
 }
 // prevent default
 
+function addToStorage(object) {
+  var stringifyObj = JSON.stringify(object);
+  localStorage.setItem(object.uniqueId, stringifyObj);
+} 
+
+$ideaList.on('click', function(e){
+  if (e.target.className === 'delete-button') {
+    var ideaId = e.target.closest('.unique-id-style').id;
+    $(`#${ideaId}`).remove();
+  }
+});
+
+// bookmarkList.addEventListener('click', function(event) {
+//   if (event.target.className === 'bookmark-buttons delete-button') {
+//     event.target.parentNode.remove(bookmark);
+//     bookmarkCount = bookmarkCount - 1;
+//   }
+// });
 
 // When viewing the idea list:
   //Each idea in the list should have a link or button to “Delete” (or 𝗫).
