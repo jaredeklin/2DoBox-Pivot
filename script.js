@@ -87,52 +87,14 @@ $ideaList.on('click', function(e) {
   }
 });
 
-
-
-//     console.log('hi');
-//     // this.quality++;
-//   }
-// e.target.Card.quality++;
-    
-//   if (e.target.className === 'downvote-button') {
-//     // this.quality--;
-
-//   }
-// };
+var $searchResults = $('.unique-id-style p');
+  $('.search-bar').keyup(function(){
+    var results = $.trim($(this).val()).replace('').toLowerCase();
+    console.log('hi');
+  })
 
 
 
-// function upvoteButton(e) {
-
-//     console.log(this.target);
-//   // e.target.siblings('')
-
-// }
-
-// function downvoteButton(e) {
-
-// }
-
-  //Clicking upvote on the idea should increase its quality one notch (“swill” → “plausible”, “plausible” → “genius”).
-  //Clicking downvote on the idea should decrease its quality one notch (“genius” → “plausible”, “plausible” → “swill”).
-  //Incrementing a “genius” idea or decrementing a “swill” idea should have no effect.
-
-
-
-  //When a user clicks the title or body of an idea in the list, that text should become an editable text field, pre-populated with the existing idea title or body.
-  //The user should be able to “commit” their changes by pressing “Enter/Return” or by clicking outside of the text field.
-  //If the user reloads the page, their edits will be reflected.
-  // content editable 
-  // event listener (keyup)
-
-
-
-  //As a user types in the search box, the list of ideas should filter in real time to only display ideas whose title or body include the user’s text. The page should not reload.
-  //Clearing the search box should restore all the ideas to the list.
-
-    // var cardId = $(e.target).closest('cardname').getProp('id')
-
-    // $(`#${cardId} quality-value`)
 
 
 
