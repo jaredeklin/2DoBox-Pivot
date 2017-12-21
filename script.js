@@ -6,7 +6,7 @@ var $saveButton = $('#save-button');
 var $ideaList = $('.idea-list');
 var $ideaTitle = $('.idea-title');
 var $ideaContent = $('.idea-content');
-var qualityArray = ['swill', 'plausible', 'genius'];
+
 
 function persistIdea() {
   for(i = 0; i < localStorage.length; i++) {
@@ -55,24 +55,47 @@ function addToStorage(object) {
   localStorage.setItem(object.uniqueId, stringifyObj);
 }
 
-$ideaList.on('click', function(e){
+$ideaList.on('click', function(e) {
   if (e.target.className === 'delete-button') {
     var ideaId = e.target.closest('.unique-id-style').id;
     $(`#${ideaId}`).remove();
     localStorage.removeItem(ideaId);
-  } 
-  if (e.target.className === 'upvote-button') {
-    if (siblings('.quality-value').text() === 'swill') {
-    }
-    console.log('hi');
-    // this.quality++;
   }
-    
-  if (e.target.className === 'downvote-button') {
-    // this.quality--;
 
-  }
+
 });
+
+var qualityArray = ['swill', 'plausible', 'genius'];
+
+$ideaList.on('click',  function(e) {
+  if (e.target.className === 'upvote-button') {
+    console.log($(e.target).siblings('.quality-value'))
+
+    if ($(e.target).siblings('.quality-value').text() === 'swill')  {
+      $(e.target).siblings('.quality-value').text(qualityArray[1]);
+
+    } 
+     else if ($(e.target).siblings('.quality-value').text() === 'plausible') {
+      $(e.target).siblings('.quality-value').text(qualityArray[2])
+    }
+
+  } 
+});
+
+
+
+
+//     console.log('hi');
+//     // this.quality++;
+//   }
+// e.target.Card.quality++;
+    
+//   if (e.target.className === 'downvote-button') {
+//     // this.quality--;
+
+//   }
+// };
+
 
 
 // function upvoteButton(e) {
@@ -103,7 +126,9 @@ $ideaList.on('click', function(e){
   //As a user types in the search box, the list of ideas should filter in real time to only display ideas whose title or body include the user’s text. The page should not reload.
   //Clearing the search box should restore all the ideas to the list.
 
+    // var cardId = $(e.target).closest('cardname').getProp('id')
 
+    // $(`#${cardId} quality-value`)
 
 
 
