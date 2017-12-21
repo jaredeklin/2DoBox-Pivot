@@ -69,19 +69,23 @@ var qualityArray = ['swill', 'plausible', 'genius'];
 
 $ideaList.on('click',  function(e) {
   if (e.target.className === 'upvote-button') {
-    console.log($(e.target).siblings('.quality-value'))
-
     if ($(e.target).siblings('.quality-value').text() === 'swill')  {
       $(e.target).siblings('.quality-value').text(qualityArray[1]);
-
-    } 
-     else if ($(e.target).siblings('.quality-value').text() === 'plausible') {
+    } else if ($(e.target).siblings('.quality-value').text() === 'plausible') {
       $(e.target).siblings('.quality-value').text(qualityArray[2])
     }
-
   } 
 });
 
+$ideaList.on('click', function(e) {
+  if (e.target.className === 'downvote-button') {
+    if ($(e.target).siblings('.quality-value').text() === 'genius') {
+      $(e.target).siblings('.quality-value').text(qualityArray[1]);
+    } else if ($(e.target).siblings('.quality-value').text() === 'plausible') {
+      $(e.target).siblings('.quality-value').text(qualityArray[0])
+    }
+  }
+});
 
 
 
