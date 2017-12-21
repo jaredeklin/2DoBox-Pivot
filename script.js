@@ -67,14 +67,14 @@ $ideaList.on('click', function(e) {
 
 var qualityArray = ['swill', 'plausible', 'genius'];
 
-$ideaList.on('click',  function(e) {
+$ideaList.on('click', function(e) {
   if (e.target.className === 'upvote-button') {
     if ($(e.target).siblings('.quality-value').text() === 'swill')  {
       $(e.target).siblings('.quality-value').text(qualityArray[1]);
     } else if ($(e.target).siblings('.quality-value').text() === 'plausible') {
       $(e.target).siblings('.quality-value').text(qualityArray[2])
     }
-  } 
+  }
 });
 
 $ideaList.on('click', function(e) {
@@ -87,21 +87,6 @@ $ideaList.on('click', function(e) {
   }
 });
 
-
-
-//     console.log('hi');
-//     // this.quality++;
-//   }
-// e.target.Card.quality++;
-    
-//   if (e.target.className === 'downvote-button') {
-//     // this.quality--;
-
-//   }
-// };
-
-
-
 // function upvoteButton(e) {
 
 //     console.log(this.target);
@@ -112,11 +97,6 @@ $ideaList.on('click', function(e) {
 // function downvoteButton(e) {
 
 // }
-
-  //Clicking upvote on the idea should increase its quality one notch (“swill” → “plausible”, “plausible” → “genius”).
-  //Clicking downvote on the idea should decrease its quality one notch (“genius” → “plausible”, “plausible” → “swill”).
-  //Incrementing a “genius” idea or decrementing a “swill” idea should have no effect.
-
 
 
   //When a user clicks the title or body of an idea in the list, that text should become an editable text field, pre-populated with the existing idea title or body.
