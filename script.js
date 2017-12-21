@@ -87,6 +87,16 @@ $ideaList.on('click', function(e) {
   }
 });
 
+
+var $searchResults = $('.unique-id-style p');
+  $('.search-bar').keyup(function(){
+    var results = $.trim($(this).val()).replace('').toLowerCase();
+    console.log('hi');
+  })
+
+
+
+
 // function upvoteButton(e) {
 
 //     console.log(this.target);
@@ -113,6 +123,7 @@ $ideaList.on('click', function(e) {
     // var cardId = $(e.target).closest('cardname').getProp('id')
 
     // $(`#${cardId} quality-value`)
+
 
 
 
