@@ -67,14 +67,14 @@ $ideaList.on('click', function(e) {
 
 var qualityArray = ['swill', 'plausible', 'genius'];
 
-$ideaList.on('click',  function(e) {
+$ideaList.on('click', function(e) {
   if (e.target.className === 'upvote-button') {
     if ($(e.target).siblings('.quality-value').text() === 'swill')  {
       $(e.target).siblings('.quality-value').text(qualityArray[1]);
     } else if ($(e.target).siblings('.quality-value').text() === 'plausible') {
       $(e.target).siblings('.quality-value').text(qualityArray[2])
     }
-  } 
+  }
 });
 
 $ideaList.on('click', function(e) {
@@ -87,6 +87,7 @@ $ideaList.on('click', function(e) {
   }
 });
 
+
 var $searchResults = $('.unique-id-style p');
   $('.search-bar').keyup(function(){
     var results = $.trim($(this).val()).replace('').toLowerCase();
@@ -94,6 +95,34 @@ var $searchResults = $('.unique-id-style p');
   })
 
 
+
+
+// function upvoteButton(e) {
+
+//     console.log(this.target);
+//   // e.target.siblings('')
+
+// }
+
+// function downvoteButton(e) {
+
+// }
+
+
+  //When a user clicks the title or body of an idea in the list, that text should become an editable text field, pre-populated with the existing idea title or body.
+  //The user should be able to “commit” their changes by pressing “Enter/Return” or by clicking outside of the text field.
+  //If the user reloads the page, their edits will be reflected.
+  // content editable 
+  // event listener (keyup)
+
+
+
+  //As a user types in the search box, the list of ideas should filter in real time to only display ideas whose title or body include the user’s text. The page should not reload.
+  //Clearing the search box should restore all the ideas to the list.
+
+    // var cardId = $(e.target).closest('cardname').getProp('id')
+
+    // $(`#${cardId} quality-value`)
 
 
 
