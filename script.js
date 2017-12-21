@@ -1,28 +1,39 @@
+window.onload = function() {
+  persistIdea();
+}
+
 var $saveButton = $('#save-button');
 var $ideaList = $('.idea-list');
 var $ideaTitle = $('.idea-title');
 var $ideaContent = $('.idea-content');
 var qualityArray = ['swill', 'plausible', 'genius'];
 
-
-// The text fields should be cleared and ready to accept a new idea.
-// The idea should be persisted. It should still be present upon reloading the page.
+function persistIdea() {
+  for(i = 0; i < localStorage.length; i++) {
+    var getObject = localStorage.getItem(localStorage.key(i));
+    var parseObject = JSON.parse(getObject);
+    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.quality);
+    persistCard.createCard();
+  }
+}
 
 $saveButton.on('click', function(event){
   event.preventDefault();
   var $ideaTitle = $('.idea-title');
   var $ideaContent = $('.idea-content');
-  console.log($ideaTitle, $ideaContent);
   var newCard = new Card($ideaTitle.val(), $ideaContent.val());
   newCard.createCard();
   addToStorage(newCard);
+  $('.idea-title').val('');
+  $('.idea-content').val('');
+  // $('.idea-title').focus();
 })
 
-function Card(title, body) {
+function Card(title, body, uniqueId, quality) {
  this.title = title;
- this.uniqueId = $.now();
+ this.uniqueId = uniqueId || $.now();
  this.body = body;
- this.quality = 0;
+ this.quality = quality || 0;
 }
 
 Card.prototype.createCard = function () {
@@ -32,7 +43,8 @@ Card.prototype.createCard = function () {
     <p class="idea-details">${this.body}</p>
     <img class="upvote-button" src="images/upvote.svg" alt="upvote-idea">
     <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
-    <p class="idea-quality"><span class="quality-value">${qualityArray[this.quality]}</span></p>
+    <h3 class="idea-quality">quality:</h3>
+    <h3 class="quality-value">${qualityArray[this.quality]}</h3>
     <hr>
     </article>`);
 }
@@ -41,7 +53,7 @@ Card.prototype.createCard = function () {
 function addToStorage(object) {
   var stringifyObj = JSON.stringify(object);
   localStorage.setItem(object.uniqueId, stringifyObj);
-} 
+}
 
 $ideaList.on('click', function(e){
   if (e.target.className === 'delete-button') {
@@ -49,23 +61,30 @@ $ideaList.on('click', function(e){
     $(`#${ideaId}`).remove();
     localStorage.removeItem(ideaId);
   } 
-  upvoteButton();
-  downvoteButton();
+  if (e.target.className === 'upvote-button') {
+    if (siblings('.quality-value').text() === 'swill') {
+    }
+    console.log('hi');
+    // this.quality++;
+  }
+    
+  if (e.target.className === 'downvote-button') {
+    // this.quality--;
+
+  }
 });
 
-function upvoteButton() {
-  this.quality++;
-}
 
-function downvoteButton() {
-  this.quality--;
-}
+// function upvoteButton(e) {
 
+//     console.log(this.target);
+//   // e.target.siblings('')
 
+// }
 
+// function downvoteButton(e) {
 
-
-
+// }
 
   //Clicking upvote on the idea should increase its quality one notch (“swill” → “plausible”, “plausible” → “genius”).
   //Clicking downvote on the idea should decrease its quality one notch (“genius” → “plausible”, “plausible” → “swill”).
@@ -76,6 +95,8 @@ function downvoteButton() {
   //When a user clicks the title or body of an idea in the list, that text should become an editable text field, pre-populated with the existing idea title or body.
   //The user should be able to “commit” their changes by pressing “Enter/Return” or by clicking outside of the text field.
   //If the user reloads the page, their edits will be reflected.
+  // content editable 
+  // event listener (keyup)
 
 
 
