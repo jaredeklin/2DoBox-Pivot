@@ -37,8 +37,8 @@ h1 {
   color: #6D6E71 ;
 }
 
-.idea-title,
-.idea-content {
+.title,
+.task {
   align-self: center;
   border: solid #D1D3D4 0.5px;
   box-shadow: 0 0 0 .1rem rgba(187,189,191,0.3);
@@ -86,7 +86,7 @@ img {
   width: 20px;
 }
 
-.idea-list {
+.two-do-list {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -161,7 +161,7 @@ hr {
   }
 
  .search,
-  .idea-list {
+  .two-do-list {
     height: 71%;
     width: 85%;
   }
@@ -177,13 +177,13 @@ hr {
     width: 50%;
   }
 
- .idea-title {
+ .title {
     margin: 0 0 6% 11%;
     padding: .4% 2.6%;
     width: 85%;
   }
 
- .idea-content {
+ .task {
     height: 76px;
     margin: 0 0 6% 11%;
     padding: .4% 2.6%;
