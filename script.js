@@ -3,35 +3,39 @@ window.onload = function() {
 }
 
 $('#save-button').on('click', saveList);
-$('.idea-list').on('click', '.delete-button', deleteCard);
-$('.idea-list').on('click', '.upvote-button', upVote);
-$('.idea-list').on('click', '.downvote-button', downVote);
+$('.two-do-list').on('click', '.delete-button', deleteCard);
+$('.two-do-list').on('click', '.upvote-button', upVote);
+$('.two-do-list').on('click', '.downvote-button', downVote);
 $('.search-bar').on('keyup', filter);
-$('.idea-title, .idea-content').on('input', enableBtn);
-$('.idea-list').on('blur', '.title-output', editTitle);
-$('.idea-list').on('blur', '.body-output', editBody);
+$('.title, .task').on('input', enableBtn);
+$('.two-do-list').on('blur', '.title-output', editTitle);
+$('.two-do-list').on('blur', '.task-output', editBody);
 
-function Card(title, body, uniqueId, quality) {
+function Card(title, body, uniqueId, importance) {
  this.title = title;
  this.uniqueId = uniqueId || $.now();
  this.body = body;
- this.quality = quality || 'swill';
+ this.importance = importance || 'none';
 }
 
 function editTitle() {
   var cardId = $(this).parent().attr('id');
-  var retrieveObject = localStorage.getItem(cardId);
-  var parseObject = JSON.parse(retrieveObject);
-  parseObject.title = $(this).text();
-  addToStorage(parseObject);
+  var returnedObject = getFromStorage(cardId);
+  returnedObject.title = $(this).text();
+  addToStorage(returnedObject);
 }
 
 function editBody() {
   var cardId = $(this).parent().attr('id');
+  var returnedObject = getFromStorage(cardId);
+  returnedObject.body = $(this).text();
+  addToStorage(returnedObject);
+}
+
+function getFromStorage(cardId) {
   var retrieveObject = localStorage.getItem(cardId);
   var parseObject = JSON.parse(retrieveObject);
-  parseObject.body = $(this).text();
-  addToStorage(parseObject);
+  return parseObject;
 }
 
 
@@ -39,14 +43,14 @@ function persistIdea() {
   for(i = 0; i < localStorage.length; i++) {
     var getObject = localStorage.getItem(localStorage.key(i));
     var parseObject = JSON.parse(getObject);
-    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.quality);
+    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance);
     persistCard.createCard();
   }
 }
 
 function saveList(event){
   event.preventDefault();
-  var newCard = new Card($('.idea-title').val(), $('.idea-content').val());
+  var newCard = new Card($('.title').val(), $('.task').val());
   newCard.createCard();
   addToStorage(newCard);
   clearInput();
@@ -54,21 +58,21 @@ function saveList(event){
 }
 
 function clearInput() {
-  $('.idea-title').val('');
-  $('.idea-content').val('');
-  $('.idea-title').focus();
+  $('.title').val('');
+  $('.task').val('');
+  $('.title').focus();
 }
 
 
 Card.prototype.createCard = function () {
-  $('.idea-list').prepend(`<article class="unique-id-style" id="${this.uniqueId}">
+  $('.two-do-list').prepend(`<article class="unique-id-style" id="${this.uniqueId}">
     <h2 class="title-output" contenteditable="true">${this.title}</h2>
     <img class="delete-button" src="images/delete.svg" alt="delete-idea">
-    <p class="body-output" contenteditable="true">${this.body}</p>
+    <p class="task-output" contenteditable="true">${this.body}</p>
     <img class="upvote-button" src="images/upvote.svg" alt="upvote-idea">
     <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
-    <h3 class="idea-quality">quality:</h3>
-    <h3 class="quality-value">${this.quality}</h3>
+    <h3 class="importance">Importance:</h3>
+    <h3 class="importance-value">${this.importance}</h3>
     <hr>
     </article>`);
 }
@@ -80,47 +84,43 @@ function addToStorage(object) {
 
 function deleteCard() {
   var cardId = $(this).parent().attr('id');
-  var retrieveObject = localStorage.getItem(cardId);
-  var parseObject = JSON.parse(retrieveObject);
   $(this).parent().remove();
   localStorage.removeItem(cardId);
 };
 
 function upVote() {
-  var qualityArray = ['swill', 'plausible', 'genius'];
+  var importanceArray = ['swill', 'plausible', 'genius'];
   var cardId = $(this).parent().attr('id');
-  var retrieveObject = localStorage.getItem(cardId);
-  var parseObject = JSON.parse(retrieveObject);
-  if ($(this).siblings('.quality-value').text() === 'swill')  {
-    $(this).siblings('.quality-value').text(qualityArray[1]);
-    parseObject.quality = 'plausible';
-    console.log(parseObject.quality);
-  } else if ($(this).siblings('.quality-value').text() === 'plausible') {
-    $(this).siblings('.quality-value').text(qualityArray[2])
-    parseObject.quality = 'genius';
+  var returnedObject = getFromStorage(cardId);
+  if ($(this).siblings('.importance-value').text() === 'swill')  {
+    $(this).siblings('.importance-value').text(importanceArray[1]);
+    returnedObject.importance = 'plausible';
+    console.log(parseObject.importance);
+  } else if ($(this).siblings('.importance-value').text() === 'plausible') {
+    $(this).siblings('.importance-value').text(importanceArray[2])
+    returnedObject.importance = 'genius';
   }
-  addToStorage(parseObject);
+  addToStorage(returnedObject);
 };
 
 function downVote() {
-  var qualityArray = ['swill', 'plausible', 'genius'];
+  var importanceArray = ['swill', 'plausible', 'genius'];
   var cardId = $(this).parent().attr('id');
-  var retrieveObject = localStorage.getItem(cardId);
-  var parseObject = JSON.parse(retrieveObject);
-  if ($(this).siblings('.quality-value').text() === 'genius') {
-    $(this).siblings('.quality-value').text(qualityArray[1]);
-    parseObject.quality = 'plausible';
-  } else if ($(this).siblings('.quality-value').text() === 'plausible') {
-    $(this).siblings('.quality-value').text(qualityArray[0])
-    parseObject.quality = 'swill'
+  var returnedObject = getFromStorage(cardId);
+  if ($(this).siblings('.importance-value').text() === 'genius') {
+    $(this).siblings('.importance-value').text(importanceArray[1]);
+    returnedObject.importance = 'plausible';
+  } else if ($(this).siblings('.importance-value').text() === 'plausible') {
+    $(this).siblings('.importance-value').text(importanceArray[0])
+    returnedObject.importance = 'swill'
   }
-  addToStorage(parseObject);
+  addToStorage(returnedObject);
 };
 
 function filter() {
   var searchInput = $('.search-bar').val().toLowerCase();
   for (var i = 0; i < $('.title-output').length; i++){
-    if ($($('.title-output')[i]).text().toLowerCase().includes(searchInput) || $($('.body-output')[i]).text().toLowerCase().includes(searchInput)){
+    if ($($('.title-output')[i]).text().toLowerCase().includes(searchInput) || $($('.task-output')[i]).text().toLowerCase().includes(searchInput)){
       $($('.title-output')[i]).parent().show();
     } else {
       $($('.title-output')[i]).parent().hide();
@@ -129,7 +129,7 @@ function filter() {
 }
 
 function enableBtn () {
-  if($('.idea-title').val() === "" || $('.idea-content').val() === "") {
+  if($('.title').val() === "" || $('.task').val() === "") {
     $('#save-button').attr('disabled', true) 
   } else {
     $('#save-button').attr('disabled', false)
