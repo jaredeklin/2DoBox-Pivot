@@ -1,21 +1,32 @@
 window.onload = function() {
   persistIdea();
+
 }
 
 $('#save-button').on('click', saveList);
 $('.two-do-list').on('click', '.delete-button', deleteCard);
 $('.two-do-list').on('click', '.upvote-button', upVote);
 $('.two-do-list').on('click', '.downvote-button', downVote);
-$('.search-bar').on('keyup', filter);
+$('.filter-bar').on('keyup', filter);
 $('.title, .task').on('input', enableBtn);
 $('.two-do-list').on('blur', '.title-output', editTitle);
 $('.two-do-list').on('blur', '.task-output', editBody);
+$('.two-do-list').on('click', '.completed-task', toggleClass);
 
-function Card(title, body, uniqueId, importance) {
+function toggleClass() {
+  $(this).parent().toggleClass('completed');
+  var cardId = $(this).parent().attr('id');
+  var returnedObject = getFromStorage(cardId);
+  returnedObject.completed = !returnedObject.completed;
+  addToStorage(returnedObject);
+} 
+
+function Card(title, body, uniqueId, importance, completed) {
  this.title = title;
  this.uniqueId = uniqueId || $.now();
  this.body = body;
  this.importance = importance || 'none';
+ this.completed = false;
 }
 
 function editTitle() {
@@ -38,15 +49,32 @@ function getFromStorage(cardId) {
   return parseObject;
 }
 
-
 function persistIdea() {
   for(i = 0; i < localStorage.length; i++) {
     var getObject = localStorage.getItem(localStorage.key(i));
     var parseObject = JSON.parse(getObject);
-    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance);
+    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
     persistCard.createCard();
+    console.log(persistCard);
   }
 }
+  
+//   hideCompleted(persistCard);
+
+
+// function hideCompleted(persistCard) {
+//   console.log(persistCard);
+//   // for( var i = 0; i < persistCard.length; i++) {
+//   // console.log(i);
+//   if(persistCard[i].completed === true) {
+//     persistCard[i].hide();
+//   }
+// }
+//   // var searchToDos = $('.to-do-list .completed').length;
+//   // console.log(searchToDos);
+// }
+
+
 
 function saveList(event){
   event.preventDefault();
@@ -63,7 +91,6 @@ function clearInput() {
   $('.title').focus();
 }
 
-
 Card.prototype.createCard = function () {
   $('.two-do-list').prepend(`<article class="unique-id-style" id="${this.uniqueId}">
     <h2 class="title-output" contenteditable="true">${this.title}</h2>
@@ -73,6 +100,7 @@ Card.prototype.createCard = function () {
     <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
     <h3 class="importance">Importance:</h3>
     <h3 class="importance-value">${this.importance}</h3>
+    <button class="completed-task">Completed Task</button>
     <hr>
     </article>`);
 }
@@ -118,7 +146,7 @@ function downVote() {
 };
 
 function filter() {
-  var searchInput = $('.search-bar').val().toLowerCase();
+  var searchInput = $('.filter-bar').val().toLowerCase();
   for (var i = 0; i < $('.title-output').length; i++){
     if ($($('.title-output')[i]).text().toLowerCase().includes(searchInput) || $($('.task-output')[i]).text().toLowerCase().includes(searchInput)){
       $($('.title-output')[i]).parent().show();
