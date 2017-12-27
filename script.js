@@ -91,14 +91,11 @@ $ideaList.on('click', function(e) {
 
   $('.search-bar').keyup(function(){
     var searchInput = $('.search-bar').val().toLowerCase();
-    // console.log(searchInput);
     for (var i = 0; i < $('.title-output').length; i++){
-      // console.log($($('.title-output')[i]).text().includes())
       if ($($('.title-output')[i]).text().toLowerCase().includes(searchInput) || $($('.body-output')[i]).text().toLowerCase().includes(searchInput)){
         $($('.title-output')[i]).parent().show();
       } else {
         $($('.title-output')[i]).parent().hide();
-        // console.log($($('.title-output')[i]).parent())
       }
     }
     
