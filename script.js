@@ -38,9 +38,9 @@ function Card(title, body, uniqueId, quality) {
 
 Card.prototype.createCard = function () {
   $ideaList.prepend(`<article class="unique-id-style" id="${this.uniqueId}">
-    <h2>${this.title}</h2>
+    <h2 class="title-output">${this.title}</h2>
     <img class="delete-button" src="images/delete.svg" alt="delete-idea">
-    <p class="idea-details">${this.body}</p>
+    <p class="body-output">${this.body}</p>
     <img class="upvote-button" src="images/upvote.svg" alt="upvote-idea">
     <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
     <h3 class="idea-quality">quality:</h3>
@@ -88,10 +88,20 @@ $ideaList.on('click', function(e) {
 });
 
 
-var $searchResults = $('.unique-id-style p');
+
   $('.search-bar').keyup(function(){
-    var results = $.trim($(this).val()).replace('').toLowerCase();
-    console.log('hi');
+    var searchInput = $('.search-bar').val().toLowerCase();
+    // console.log(searchInput);
+    for (var i = 0; i < $('.title-output').length; i++){
+      // console.log($($('.title-output')[i]).text().includes())
+      if ($($('.title-output')[i]).text().toLowerCase().includes(searchInput) || $($('.body-output')[i]).text().toLowerCase().includes(searchInput)){
+        $($('.title-output')[i]).parent().show();
+      } else {
+        $($('.title-output')[i]).parent().hide();
+        // console.log($($('.title-output')[i]).parent())
+      }
+    }
+    
   })
 
 
