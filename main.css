@@ -33,6 +33,18 @@ h1 {
   margin: 0 35%;
 }
 
+.completed {
+  background-color: #c0d6e4;
+  padding: 5px 0 5px 5px;
+}
+
+.completed-task {
+  display: block;
+  border: 1px solid black;
+  margin-left: 2%;
+  padding: 5px;
+}
+
 .h1-style {
   color: #6D6E71 ;
 }
@@ -50,11 +62,11 @@ h1 {
   width: 60%;
 }
 
-.search {
+.filter {
   width: 100%;
 }
 
-.search-bar {
+.filter-bar {
   align-self: center;
   border: solid #D1D3D4 0.5px;
   box-shadow: 0 0 0 .1rem rgba(187,189,191,0.3);
@@ -160,7 +172,7 @@ hr {
     width: 100%;
   }
 
- .search,
+ .filter,
   .two-do-list {
     height: 71%;
     width: 85%;
@@ -195,7 +207,21 @@ hr {
     margin: 0 0 6% 11%;
   }
 
- .search-bar {
+ .filter-bar {
     width: 73%;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
