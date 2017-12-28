@@ -18,7 +18,13 @@ function toggleClass() {
   var cardId = $(this).parent().attr('id');
   var returnedObject = getFromStorage(cardId);
   returnedObject.completed = !returnedObject.completed;
+  if(returnedObject.completed === true){
+    $(this).text('Completed: true');
+  } else {
+    $(this).text('Completed: false');
+  }
   addToStorage(returnedObject);
+
 } 
 
 function Card(title, body, uniqueId, importance, completed) {
@@ -26,7 +32,7 @@ function Card(title, body, uniqueId, importance, completed) {
  this.uniqueId = uniqueId || $.now();
  this.body = body;
  this.importance = importance || 'none';
- this.completed = false;
+ this.completed = completed || false;
 }
 
 function editTitle() {
@@ -54,24 +60,44 @@ function persistIdea() {
     var getObject = localStorage.getItem(localStorage.key(i));
     var parseObject = JSON.parse(getObject);
     var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
-    persistCard.createCard();
-    console.log(persistCard);
+    if(parseObject.completed === false) {
+      persistCard.createCard();
+      console.log(parseObject.uniqueId, parseObject.completed);
+    }
   }
 }
-  
-//   hideCompleted(persistCard);
+
+$('.show-hide-button').on('click', showCompletedTasks);
+
+function showCompletedTasks() {
+  for(i = 0; i < localStorage.length; i++) {
+    var getObject = localStorage.getItem(localStorage.key(i));
+    var parseObject = JSON.parse(getObject);
+    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
+    if(parseObject.completed === true){
+      persistCard.createCard();
+      // console.log(this);
+    }
+    $('.show-hide-button').attr('disabled', true);
+  }
+}
 
 
-// function hideCompleted(persistCard) {
-//   console.log(persistCard);
-//   // for( var i = 0; i < persistCard.length; i++) {
-//   // console.log(i);
-//   if(persistCard[i].completed === true) {
-//     persistCard[i].hide();
-//   }
+// function hideCompleted(parseObject) {
+
+//   var cardId = $(this).parent().attr('id');
+
+//   if(parseObject.completed === true){
+//     console.log($($('.unique-id-style')[i]))
+    // $($('.unique-id-style')[i]).hide();
+  // for( var i = 0; i < parseObject.length; i++) {
+  // console.log(i);
+  // if(persistCard[i].completed === true) {
+  //   persistCard[i].hide();
+  // }
 // }
-//   // var searchToDos = $('.to-do-list .completed').length;
-//   // console.log(searchToDos);
+  // var searchToDos = $('.to-do-list .completed').length;
+  // console.log(searchToDos);
 // }
 
 
@@ -100,9 +126,14 @@ Card.prototype.createCard = function () {
     <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
     <h3 class="importance">Importance:</h3>
     <h3 class="importance-value">${this.importance}</h3>
-    <button class="completed-task">Completed Task</button>
+    <button class="completed-task">Completed: ${this.completed}</button>
     <hr>
     </article>`);
+    
+    // if (this.completed === true){
+    //   $(this).parent().addClass('completed')
+    //   console.log($(this).parent());
+    // }
 }
 
 function addToStorage(object) {
@@ -123,7 +154,7 @@ function upVote() {
   if ($(this).siblings('.importance-value').text() === 'swill')  {
     $(this).siblings('.importance-value').text(importanceArray[1]);
     returnedObject.importance = 'plausible';
-    console.log(parseObject.importance);
+    // console.log(parseObject.importance);
   } else if ($(this).siblings('.importance-value').text() === 'plausible') {
     $(this).siblings('.importance-value').text(importanceArray[2])
     returnedObject.importance = 'genius';
