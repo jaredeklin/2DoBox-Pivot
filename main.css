@@ -33,6 +33,10 @@ h1 {
   margin: 0 35%;
 }
 
+.show-more {
+  display: block;
+  border: 1px solid black;
+}
 .completed {
   background-color: #c0d6e4;
   padding: 5px 0 5px 5px;
