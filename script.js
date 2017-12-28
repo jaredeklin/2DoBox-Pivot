@@ -1,6 +1,5 @@
 window.onload = function() {
   persistIdea();
-
 }
 
 $('#save-button').on('click', saveList);
@@ -24,14 +23,13 @@ function toggleClass() {
     $(this).text('Completed: false');
   }
   addToStorage(returnedObject);
-
 } 
 
 function Card(title, body, uniqueId, importance, completed) {
  this.title = title;
  this.uniqueId = uniqueId || $.now();
  this.body = body;
- this.importance = importance || 'none';
+ this.importance = importance || 'normal';
  this.completed = completed || false;
 }
 
@@ -76,7 +74,6 @@ function showCompletedTasks() {
     var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
     if(parseObject.completed === true){
       persistCard.createCard();
-      // console.log(this);
     }
     $('.show-hide-button').attr('disabled', true);
   }
@@ -99,8 +96,6 @@ function showCompletedTasks() {
   // var searchToDos = $('.to-do-list .completed').length;
   // console.log(searchToDos);
 // }
-
-
 
 function saveList(event){
   event.preventDefault();
@@ -147,33 +142,28 @@ function deleteCard() {
   localStorage.removeItem(cardId);
 };
 
-function upVote() {
-  var importanceArray = ['swill', 'plausible', 'genius'];
+function upVote(event) {
+  var importanceArray = ['none', 'low', 'normal', 'high', 'critical'];
   var cardId = $(this).parent().attr('id');
   var returnedObject = getFromStorage(cardId);
-  if ($(this).siblings('.importance-value').text() === 'swill')  {
-    $(this).siblings('.importance-value').text(importanceArray[1]);
-    returnedObject.importance = 'plausible';
-    // console.log(parseObject.importance);
-  } else if ($(this).siblings('.importance-value').text() === 'plausible') {
-    $(this).siblings('.importance-value').text(importanceArray[2])
-    returnedObject.importance = 'genius';
+  var index = importanceArray.indexOf($(this).siblings('.importance-value').text());
+  if (event.target.classList.contains('upvote-button') && index < 4) {
+    $(this).siblings('.importance-value').text(importanceArray[index + 1])
+    returnedObject.importance = importanceArray[index + 1]
+    addToStorage(returnedObject);
   }
-  addToStorage(returnedObject);
 };
 
 function downVote() {
-  var importanceArray = ['swill', 'plausible', 'genius'];
+  var importanceArray = ['none', 'low', 'normal', 'high', 'critical'];
   var cardId = $(this).parent().attr('id');
   var returnedObject = getFromStorage(cardId);
-  if ($(this).siblings('.importance-value').text() === 'genius') {
-    $(this).siblings('.importance-value').text(importanceArray[1]);
-    returnedObject.importance = 'plausible';
-  } else if ($(this).siblings('.importance-value').text() === 'plausible') {
-    $(this).siblings('.importance-value').text(importanceArray[0])
-    returnedObject.importance = 'swill'
+  var index = importanceArray.indexOf($(this).siblings('.importance-value').text());
+  if(event.target.classList.contains('downvote-button') && index > 0) {
+    $(this).siblings('.importance-value').text(importanceArray[index - 1])
+    returnedObject.importance = importanceArray[index - 1]
+    addToStorage(returnedObject);
   }
-  addToStorage(returnedObject);
 };
 
 function filter() {
