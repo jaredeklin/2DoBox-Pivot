@@ -7,21 +7,21 @@ window.onload = function() {
 
 $('#save-button').on('click', saveList);
 $('.two-do-list').on('click', '.delete-button', deleteCard);
-$('.two-do-list').on('click', '.upvote-button', upVote);
-$('.two-do-list').on('click', '.downvote-button', downVote);
+$('.two-do-list').on('click', '.upvote-button, .downvote-button', vote);
 $('.filter-bar').on('keyup', filter);
 $('.title, .task').on('input', enableBtn);
 $('.two-do-list').on('blur', '.title-output', editTitle);
 $('.two-do-list').on('blur', '.task-output', editBody);
 $('.two-do-list').on('click', '.completed-task', toggleClass);
+$('.critical').on('click', criticalFilter)
+$('.show-hide-button').on('click', showCompletedTasks);
+$('.show-more').on('click', showMore);
 
-$('.show-more').on('click', function(){
+function showMore() {
   for (var i = 0; i < $('.unique-id-style').length; i++){
     $($('.unique-id-style')[i]).show();
   }
-})
-
-$('.critical').on('click', criticalFilter)
+}
 
 function criticalFilter(){
   for (var i = 0; i < $('.importance-value').length; i++){
@@ -75,20 +75,15 @@ function getFromStorage(cardId) {
 }
 
 function persistIdea() {
-  // if (localStorage.length > 10){
-    for(var i = 0; i < localStorage.length; i++) {
-      var getObject = localStorage.getItem(localStorage.key(i));
-      var parseObject = JSON.parse(getObject);
-      var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
-      if(parseObject.completed === false) {
-        persistCard.createCard();
-        console.log(parseObject.uniqueId, parseObject.completed);
-      }
+  for(var i = 0; i < localStorage.length; i++) {
+    var getObject = localStorage.getItem(localStorage.key(i));
+    var parseObject = JSON.parse(getObject);
+    var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
+    if(parseObject.completed === false) {
+      persistCard.createCard();
     }
-  // }
+  }
 }
-
-$('.show-hide-button').on('click', showCompletedTasks);
 
 function showCompletedTasks() {
   for(var i = 0; i < localStorage.length; i++) {
@@ -137,11 +132,6 @@ Card.prototype.createCard = function () {
     <button class="completed-task">Completed: ${this.completed}</button>
     <hr>
     </article>`);
-    
-    // if (this.completed === true){
-    //   $(this).parent().addClass('completed')
-    //   console.log($(this).parent());
-    // }
 }
 
 function addToStorage(object) {
@@ -155,29 +145,24 @@ function deleteCard() {
   localStorage.removeItem(cardId);
 };
 
-function upVote(event) {
+function vote() {
+  var voteTarget = this;
   var importanceArray = ['none', 'low', 'normal', 'high', 'critical'];
-  var cardId = $(this).parent().attr('id');
+  var cardId = $(voteTarget).parent().attr('id');
   var returnedObject = getFromStorage(cardId);
-  var index = importanceArray.indexOf($(this).siblings('.importance-value').text());
-  if (event.target.classList.contains('upvote-button') && index < 4) {
-    $(this).siblings('.importance-value').text(importanceArray[index + 1])
-    returnedObject.importance = importanceArray[index + 1]
-    addToStorage(returnedObject);
-  }
+  var index = importanceArray.indexOf($(voteTarget).siblings('.importance-value').text());
+  changeImportance(voteTarget, importanceArray, returnedObject, index);
 };
 
-function downVote() {
-  var importanceArray = ['none', 'low', 'normal', 'high', 'critical'];
-  var cardId = $(this).parent().attr('id');
-  var returnedObject = getFromStorage(cardId);
-  var index = importanceArray.indexOf($(this).siblings('.importance-value').text());
-  if(event.target.classList.contains('downvote-button') && index > 0) {
-    $(this).siblings('.importance-value').text(importanceArray[index - 1])
-    returnedObject.importance = importanceArray[index - 1]
-    addToStorage(returnedObject);
+function changeImportance(voteTarget, importanceArray, returnedObject, index){
+  if (event.target.classList.contains('upvote-button')) {
+    $(voteTarget).siblings('.importance-value').text(importanceArray[index + 1])
+  } else {
+    $(voteTarget).siblings('.importance-value').text(importanceArray[index - 1])
   }
-};
+  returnedObject.importance = $(voteTarget).siblings('.importance-value').text()
+  addToStorage(returnedObject);
+}
 
 function filter() {
   var searchInput = $('.filter-bar').val().toLowerCase();

@@ -78,7 +78,8 @@ h1 {
   padding: 5px;
 }
 .filter {
-  width: 100%;
+  width: 80%;
+  margin: auto;
 }
 
 .filter-bar {
@@ -88,8 +89,9 @@ h1 {
   font-size: 1.5rem;
   letter-spacing: .05rem;
   padding: 0.2% 0.5%;
-  width: 80%;
-  margin: 2rem 9.8rem;
+  width: 100%;
+  margin: 2rem 0 2rem 0;
+  box-sizing: border-box;
 }
 
 input::placeholder {
