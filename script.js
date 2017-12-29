@@ -122,10 +122,10 @@ function clearInput() {
 Card.prototype.createCard = function () {
   $('.two-do-list').prepend(`<article class="unique-id-style" id="${this.uniqueId}">
     <h2 class="title-output" contenteditable="true">${this.title}</h2>
-    <img class="delete-button" src="images/delete.svg" alt="delete-idea">
+    <button class="delete-button"></button>
     <p class="task-output" contenteditable="true">${this.body}</p>
-    <img class="upvote-button" src="images/upvote.svg" alt="upvote-idea">
-    <img class="downvote-button" src="images/downvote.svg" alt="downvote-idea">
+    <button class="upvote-button"></button>
+    <button class="downvote-button"></button>
     <h3 class="importance">Importance:</h3>
     <h3 class="importance-value">${this.importance}</h3>
     <button class="completed-task">Completed: ${this.completed}</button>
