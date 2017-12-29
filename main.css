@@ -3,9 +3,9 @@ html {
 }
 
 * {
-border:0;
-margin:0;
-padding:0;
+  border:0;
+  margin:0;
+  padding:0;
 }
 
 body {
@@ -15,17 +15,18 @@ body {
 /*All stylings for banner*/
 .banner {
   background-color: #E5F3F2 ;
-  height: 250px;
+  height: 35rem;
 }
 
 .banner-content {
-  width: 100%;
+  width: 60%;
+  margin: auto;
 }
 
 h1 {
   color: #00A79D ;
   font-family: "Roboto Slab", serif;
-  font-size: 7rem;
+  font-size: 10rem;
   text-align: center;
 }
 
@@ -37,33 +38,19 @@ h1 {
   text-align: center;
 }
 
-.show-hide-button {
-  display: block;
-  border: 1px solid black;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  align-self: center;
-}
-
-.show-more {
-  display: block;
-  border: 1px solid black;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  text-align: center;
-}
-
 .title,
 .task {
   align-self: center;
   border: solid #D1D3D4 0.5px;
   box-shadow: 0 0 0 .1rem rgba(187,189,191,0.3);
   color: #939598 ;
-  font-size: 1.5rem;
+  font-size: 2rem;
   letter-spacing: .05rem;
   margin-bottom: 2rem;
-  padding: 0.5% 0.5%;
-  width: 80%;
+  padding: 1rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
 }
 
 .completed {
@@ -73,38 +60,44 @@ h1 {
 
 .completed-task {
   display: block;
-  border: 1px solid black;
-  margin-left: 2%;
-  padding: 5px;
+  margin-left: 1rem;
+  padding: 1rem;
+  background-color: #00a79d;
+  color: #fff; 
+  width: 20rem;
+  font-size: 2rem; 
 }
+
 .filter {
-  width: 80%;
+  width: 60%;
   margin: auto;
+  text-align: center;
 }
 
 .filter-bar {
   border: solid #D1D3D4 0.5px;
-  box-shadow: 0 0 0 .1rem rgba(187,189,191,0.3);
   color: #939598 ;
-  font-size: 1.5rem;
+  font-size: 2rem;
   letter-spacing: .05rem;
-  padding: 0.2% 0.5%;
+  padding: 1rem 0.5%;
   width: 100%;
   margin: 2rem 0 2rem 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 input::placeholder {
-  color: rgb(187,189,191);
+  color: #d1d3d4;
 }
 
 .save-button {
   background-color: #00A79D ;
   color: #FFFFFF ;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
-  padding: .5% 0;
-  width: 81%;
+  padding: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .completed-todos {
@@ -112,34 +105,39 @@ input::placeholder {
 }
 
 /*Resizing delete, up vote, & down vote buttons*/
-img {
-  height: 20px;
-  width: 20px;
-}
 
 .two-do-list {
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 60%;
+  margin: auto;
 }
 
 .unique-id-style {
-  margin-right: 4rem;
   position: relative;
-  width: 60%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 h2 {
   color: #6D6E71 ;
   font-family: "Roboto Slab", serif;
-  font-size: 1.5rem;
+  font-size: 5rem;
+  margin-left: 1rem;
 }
 
 h3 {
   display: inline;
   font-family: "Roboto Slab", serif;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 400;
+  padding-bottom: 1rem;
+}
+
+p {
+  font-size: 2.5rem;
+  margin-left: 1rem;
 }
 
 .importance-buttons {
@@ -150,25 +148,47 @@ h3 {
 .high,
 .normal,
 .low,
-.none {
+.none,
+.show-more,
+.show-hide-button {
   margin: .5%;
-  width: 8rem;
-  border: 1px solid black;
-  padding: .5rem;
+  width: 12rem;
+  padding: 1rem;
+  background-color: #00a79d;
+  color: #fff;
+  font-size: 2rem;
 }
 
 .critical:hover,
 .high:hover,
 .normal:hover,
 .low:hover,
-.none:hover {
+.none:hover,
+.show-more:hover,
+.show-hide-button:hover {
   background-color: #939598;
 }
 
+.show-more,
+.show-hide-button {
+  margin: 1rem 1rem 2rem 1rem;
+  padding: 1rem;
+  text-align: center;
+  width: 22rem;
+}
+
 .delete-button {
+  background-image: url('images/delete.svg'); 
   position: absolute;
   right: .55rem;
   top: 0.35rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.delete-button:hover {
+  background-image: url('images/delete-hover.svg');
 }
 
 .idea-details {
@@ -179,22 +199,28 @@ h3 {
   word-wrap: break-word;
 }
 
+.upvote-button,
+.downvote-button {
+  margin: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
 .upvote-button {
-  padding-right: 1rem;
+  background-image: url('images/upvote.svg');
 }
 
 .downvote-button {
-  padding-right: 1.2rem;
+  background-image: url('images/downvote.svg');
 }
 
 .upvote-button:hover {
-  background: url("images/upvote-hover.svg") no-repeat;
+  background-image: url("images/upvote-hover.svg");
 }
 
-.idea-quality,
-.quality-value {
-  color: #6D6E71 ;
-  margin-bottom: 1rem;
+.downvote-button:hover {
+  background-image: url('images/downvote-hover.svg');
 }
 
 hr {
@@ -204,58 +230,53 @@ hr {
   margin: 1rem 0 1rem 0;
 }
 
+@media screen and (max-width: 1085px) {
 
-
-/*
-@media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
- .banner {
-    height: 252px;
-    width: 100%;
-  }
-
- .filter,
-  .two-do-list {
-    height: 71%;
-    width: 85%;
-  }
-
- .unique-id-style {
-    margin-right: -8.5rem;
-    width: 75%;
-  }
-
- h1 {
-    font-size: 30px;
-    margin: 10px auto 10px auto;
-    width: 50%;
-  }
-
- .title {
-    margin: 0 0 6% 11%;
-    padding: .4% 2.6%;
-    width: 85%;
-  }
-
- .task {
-    height: 76px;
-    margin: 0 0 6% 11%;
-    padding: .4% 2.6%;
-    width: 85%;
-  }
-
- .save-button {
-    width: 91%;
-    margin: 0 0 6% 11%;
-  }
-
- .filter-bar {
-    width: 73%;
+  .critical,
+  .high,
+  .normal,
+  .low,
+  .none {
+    width: 10rem;
   }
 }
 
+@media screen and (max-width: 900px) {
 
-*/
+  h1 {
+    font-size: 8rem;
+  }
+
+  .banner {
+    height: 31rem;
+  }
+
+  .critical,
+  .high,
+  .normal,
+  .low,
+  .none {
+    width: 8rem;
+  }
+
+  .show-more,
+  .show-hide-button {
+    width: 40%;
+    font-size: 1.8rem;
+  } 
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
