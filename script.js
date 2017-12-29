@@ -3,8 +3,6 @@ window.onload = function() {
   showLastTen();
 }
 
-
-
 $('#save-button').on('click', saveList);
 $('.two-do-list').on('click', '.delete-button', deleteCard);
 $('.two-do-list').on('click', '.upvote-button, .downvote-button', vote);
@@ -13,7 +11,7 @@ $('.title, .task').on('input', enableBtn);
 $('.two-do-list').on('blur', '.title-output', editTitle);
 $('.two-do-list').on('blur', '.task-output', editBody);
 $('.two-do-list').on('click', '.completed-task', toggleClass);
-$('.critical').on('click', criticalFilter)
+$('.critical, .high, .normal, .low, .none').on('click', importanceFilter)
 $('.show-hide-button').on('click', showCompletedTasks);
 $('.show-more').on('click', showMore);
 
@@ -23,9 +21,10 @@ function showMore() {
   }
 }
 
-function criticalFilter(){
+function importanceFilter() {
+  var importanceVal = $(this).text().toLowerCase();
   for (var i = 0; i < $('.importance-value').length; i++){
-    if ($($('.importance-value')[i]).text() === 'critical'){
+    if ($($('.importance-value')[i]).text() === importanceVal){
       $($('.importance-value')[i]).parent().show()
     } else {
       $($('.importance-value')[i]).parent().hide()
@@ -182,14 +181,3 @@ function enableBtn () {
     $('#save-button').attr('disabled', false)
   }
 } 
-
-
-
-  
-
-
-
-
-
-
-
