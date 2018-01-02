@@ -12,6 +12,10 @@ body {
   font-family: "Open Sans", serif;
 }
 
+button {
+  outline: none;
+}
+
 /*All stylings for banner*/
 .banner {
   background-color: #E5F3F2 ;
@@ -34,13 +38,8 @@ h1 {
   color: #6D6E71 ;
 }
 
-.top-inputs {
-  text-align: center;
-}
-
 .title,
 .task {
-  align-self: center;
   border: solid #D1D3D4 0.5px;
   box-shadow: 0 0 0 .1rem rgba(187,189,191,0.3);
   color: #939598 ;
@@ -54,24 +53,42 @@ h1 {
 }
 
 .completed {
-  background-color: #c0d6e4;
-  padding: 5px 0 5px 5px;
+  background-color:#E5F3F2;
+  background-image: url(images/checkmark.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: right;
 }
 
 .completed-task {
   display: block;
   margin-left: 1rem;
   padding: 1rem;
-  background-color: #00a79d;
-  color: #fff; 
+  background-color: #00A79D;
+  color: #FFF; 
   width: 20rem;
   font-size: 2rem; 
 }
 
+.completed-task img {
+  height: 2rem;
+  width: 2rem;
+  margin: 0 1rem;
+  position: relative;
+  top: 3px;
+}
+
+/*.completed .completed-task {
+  background-image: url(images/checkmark.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: right;
+}*/
+
 .filter {
   width: 60%;
   margin: auto;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .filter-bar {
@@ -91,7 +108,7 @@ input::placeholder {
 }
 
 .save-button {
-  background-color: #00A79D ;
+  background-color: #00A79D;
   color: #FFFFFF ;
   font-size: 2rem;
   text-align: center;
@@ -100,14 +117,14 @@ input::placeholder {
   box-sizing: border-box;
 }
 
-.completed-todos {
+/*.completed-todos {
   text-align: center;
-}
+}*/
 
 /*Resizing delete, up vote, & down vote buttons*/
 
 .two-do-list {
-  align-items: center;
+  /*align-items: center;*/
   display: flex;
   flex-direction: column;
   width: 60%;
@@ -118,6 +135,12 @@ input::placeholder {
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  margin: 0 0 .5rem 0;
+}
+
+.title-output,
+.task-output {
+  outline: none;
 }
 
 h2 {
@@ -132,7 +155,8 @@ h3 {
   font-family: "Roboto Slab", serif;
   font-size: 2rem;
   font-weight: 400;
-  padding-bottom: 1rem;
+  position: relative;
+  bottom: .7rem;
 }
 
 p {
@@ -140,19 +164,14 @@ p {
   margin-left: 1rem;
 }
 
-.importance-buttons {
-  text-align: center;
-}
-
 .critical,
 .high,
 .normal,
 .low,
 .none,
-.show-more,
-.show-hide-button {
-  margin: .5%;
-  width: 12rem;
+.show-more-button,
+.show-completed-button {
+  width: 19.5%;
   padding: 1rem;
   background-color: #00a79d;
   color: #fff;
@@ -164,17 +183,27 @@ p {
 .normal:hover,
 .low:hover,
 .none:hover,
-.show-more:hover,
-.show-hide-button:hover {
-  background-color: #939598;
+.show-more-button:hover,
+.show-completed-button:hover,
+.completed-task:hover {
+  background-color: #D1D2D4;
 }
 
-.show-more,
-.show-hide-button {
-  margin: 1rem 1rem 2rem 1rem;
+.show-more-button,
+.show-completed-button {
+  margin: 1rem 0 1rem 0;
   padding: 1rem;
-  text-align: center;
-  width: 22rem;
+  width: 99.7%;
+}
+
+.show-more-button {
+  width: 100%;
+  margin: 1rem 0 4rem 0;
+}
+
+.bottom-section {
+  width: 60%;
+  margin: auto;
 }
 
 .delete-button {
@@ -189,14 +218,6 @@ p {
 
 .delete-button:hover {
   background-image: url('images/delete-hover.svg');
-}
-
-.idea-details {
-  color: #939598 ;
-  font-size: 1.2rem;
-  padding: 1rem 0 1rem 0;
-  text-align: justify;
-  word-wrap: break-word;
 }
 
 .upvote-button,
@@ -230,7 +251,7 @@ hr {
   margin: 1rem 0 1rem 0;
 }
 
-@media screen and (max-width: 1085px) {
+/*@media screen and (max-width: 1085px) {
 
   .critical,
   .high,
@@ -239,33 +260,64 @@ hr {
   .none {
     width: 10rem;
   }
-}
+}*/
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
 
   h1 {
     font-size: 8rem;
   }
 
   .banner {
-    height: 31rem;
+    height: 30rem;
+  }
+
+  .banner-content,
+  .filter,
+  .two-do-list,
+  .bottom-section {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 520px){
+  
+  h1 {
+    font-size: 6rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .banner {
+    height: 27rem;
   }
 
   .critical,
   .high,
   .normal,
-  .low,
-  .none {
-    width: 8rem;
+  .low {
+    width: 49.4%;
+    margin: 0 0 .3rem 0;
   }
 
-  .show-more,
-  .show-hide-button {
-    width: 40%;
-    font-size: 1.8rem;
-  } 
+  .none {
+    width: 99.6%;
+  }
 
+  .downvote-button {
+    margin-left: 0;
+  }
 
+  .completed-task {
+    font-size: 1.5rem;
+    width: 16rem;
+  }
+
+  .completed-task img {
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 
