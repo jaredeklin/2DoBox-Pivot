@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Roboto+Slab:400,700" rel="stylesheet">
-  <title>2DoList</title>
-</head>
-
-<body>
-<section class="banner" role="banner">
-  <article class="banner-content">
-    <h1>2Do<span class="h1-style">List</span></h1>
-    <form class="top-inputs">
-      <label for="title"></label>
-      <input type="text" placeholder="Title" class="title" aria-label="title">
-      <label for="task"></label>
-      <input type="text" placeholder="Task" class="task" aria-label="task">
-      <label for="save-button"></label>
-      <input type="submit" value="save" id="save-button" class="save-button" disabled="true">
-    </form>
-  </article>
-</section>
-
-<section class="filter">
-  <article id ="filter-bar">
-    <form>
-      <label for="filter-bar"></label>
-      <input type="text" placeholder="Filter" class="filter-bar">
-    </form>
-  </article>
-  <article class="importance-buttons">
-    <button class="critical">Critical</button>
-    <button class="high">High</button>
-    <button class="normal">Normal</button>
-    <button class="low">Low</button>
-    <button class="none">None</button>
-  </article>
-  <button class="show-completed-button">Show completed 2do's</button>
-<!--   <button class="show-more">Show More 2do's</button> -->
-</section>
-<section class="two-do-list" role="main"> 
-</section>
-<section class="bottom-section">
-  <button class="show-more-button">Show More 2do's</button>
-</section>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Roboto+Slab:400,700" rel="stylesheet">
+    <title>2DoList</title>
+  </head>
+  <body>
+    <section class="banner" role="banner">
+      <article class="banner-content">
+        <h1>2Do<span class="h1-style">List</span></h1>
+        <form class="top-inputs">
+          <label for="title"></label>
+          <input type="text" placeholder="Title" class="title" aria-label="title">
+          <label for="task"></label>
+          <input type="text" placeholder="Task" class="task" aria-label="task">
+          <label for="save-button"></label>
+          <input type="submit" value="save" id="save-button" class="save-button" disabled="true">
+        </form>
+      </article>
+    </section>
+    <section class="filter">
+      <article id ="filter-bar">
+        <form>
+          <label for="filter-bar"></label>
+          <input type="text" placeholder="Filter" class="filter-bar">
+        </form>
+      </article>
+      <article class="importance-buttons">
+        <button class="critical">Critical</button>
+        <button class="high">High</button>
+        <button class="normal">Normal</button>
+        <button class="low">Low</button>
+        <button class="none">None</button>
+      </article>
+      <button class="show-completed-button">Show completed 2do's</button>
+    </section>
+    <section class="two-do-list" role="main"> 
+    </section>
+    <section class="bottom-section">
+      <button class="show-more-button">Show More 2do's</button>
+    </section>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
 </html>
