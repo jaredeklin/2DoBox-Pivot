@@ -1,7 +1,7 @@
 window.onload = function() {
   persistIdea();
   showLastTen();
-  // hideCompletedTasks();
+  incompleteText();
 }
 
 $('#save-button').on('click', saveList);
@@ -11,7 +11,7 @@ $('.filter-bar').on('keyup', filter);
 $('.title, .task').on('input', enableBtn);
 $('.two-do-list').on('blur', '.title-output', editTitle);
 $('.two-do-list').on('blur', '.task-output', editBody);
-$('.two-do-list').on('click', '.completed-task', toggleClass);
+$('.two-do-list').on('click', '.completed-task', grabObject);
 $('.critical, .high, .normal, .low, .none').on('click', importanceFilter)
 $('.show-completed-button').on('click', showCompletedTasks);
 $('.show-more-button').on('click', showMore);
@@ -24,14 +24,6 @@ function Card(title, body, uniqueId, importance, completed) {
  this.importance = importance || 'normal';
  this.completed = completed || false;
 }
-
-// function hideCompletedTasks(){
-//   for(var i = 0; i < $('.unique-id-style').length; i++){
-//     if($($('.completed-task')[i]).text() === 'Completed: true'){
-//       $($('.unique-id-style')[i]).hide();
-//     }
-//   }
-// }
 
 function showMore() {
   for(var i = 0; i < $('.unique-id-style').length; i++){
@@ -50,22 +42,24 @@ function importanceFilter() {
   }
 }
 
-function toggleClass() {
-  $(this).parent().toggleClass('completed');
+function grabObject() {
   var cardId = $(this).parent().attr('id');
   var returnedObject = getFromStorage(cardId);
+  var thisThing = this;
+  toggleClass(thisThing, returnedObject)
+}
+
+function toggleClass(thisThing, returnedObject) {
+  $(thisThing).parent().toggleClass('completed');
   returnedObject.completed = !returnedObject.completed;
   if(returnedObject.completed === true){
-    $(this).html('<img src="images/checkmark.svg">Done!!!!<img src="images/checkmark.svg">');
+    $(thisThing).html('<img src="images/checkmark.svg">Done!!!!<img src="images/checkmark.svg">');
   } else {
-    $(this).text('Completed: false');
+    $(thisThing).text('Incomplete');
   }
   addToStorage(returnedObject);
-  // updateStyleForCompleted();
 } 
-
-
-
+ 
 function editTitle() {
   var cardId = $(this).parent().attr('id');
   var returnedObject = getFromStorage(cardId);
@@ -91,7 +85,6 @@ function persistIdea() {
     var getObject = localStorage.getItem(localStorage.key(i));
     var parseObject = JSON.parse(getObject);
     var persistCard = new Card(parseObject.title, parseObject.body, parseObject.uniqueId, parseObject.importance, parseObject.completed);
-    // persistCard.createCard();
     if(parseObject.completed === false) {
       persistCard.createCard();
     }
@@ -99,12 +92,14 @@ function persistIdea() {
 }
 
 function showCompletedTasks() {
-  // for(var i = 0; i < $('.unique-id-style').length; i++){
-  //   if($($('.completed-task')[i]).text() === 'Completed: true'){
-  //     $($('.unique-id-style')[i]).show();
-  //     $($('.unique-id-style')[i]).addClass('completed');
-  //   }
-  // } 
+  $('.unique-id-style').remove();
+  persistIdea();
+  getCompletedCards();
+  updateStyleForCompleted();
+  incompleteText();
+}
+
+function getCompletedCards () {
   for(var i = 0; i < localStorage.length; i++) {
     var getObject = localStorage.getItem(localStorage.key(i));
     var parseObject = JSON.parse(getObject);
@@ -113,8 +108,6 @@ function showCompletedTasks() {
       persistCard.createCard();
     }
   }
-  $('.show-completed-button').attr('disabled', true);
-  updateStyleForCompleted();
 }
 
 function updateStyleForCompleted(){
@@ -127,36 +120,21 @@ function updateStyleForCompleted(){
 }
 
 function showLastTen(){
-    for (var i = 0; i < $('.completed-task').length; i++){
-      if(i > 9) {
-        $($('.completed-task')[i]).parent().hide();
-      }
+  for(var i = 0; i < $('.completed-task').length; i++){
+    if(i > 9) {
+      $($('.completed-task')[i]).parent().hide();
     }
-
-
-  // var newArray = [];
-  // for (var i = 0; i < $('.completed-task').length; i++) {
-  //   if($($('.completed-task')[i]).text() === 'Completed: false'){
-  //     // $($('.unique-id-style')[i]).hide();
-  //     var x = $($('.unique-id-style')[i])
-  //     newArray.push(x)
-  //   }
-  // }
-  // console.log(newArray)
-  // console.log($('.unique-id-style'))
-  // pleaseWork(newArray);
+  }
 }
 
-// function pleaseWork(){
-//   for (var i = 0; i < newArray.length; i++){
-//     if(i > 9) {
-//       console.log($($('.completed-task')[i]))
-//       $($('.completed-task')[i]).parent().hide();
-//     }
-//   }
-// }
-
-
+function incompleteText () {
+  for(var i = 0; i < $('.completed-task').length; i++) {
+    console.log($($('.completed-task')[i]).text());
+    if($($('.completed-task')[i]).text() === 'Completed: false') {
+      $($('.completed-task')[i]).text('Incomplete');
+    }
+  }
+}
 
 function saveList(event){
   event.preventDefault();
@@ -165,6 +143,7 @@ function saveList(event){
   addToStorage(newCard);
   clearInput();
   enableBtn();
+  incompleteText();
 }
 
 function clearInput() {

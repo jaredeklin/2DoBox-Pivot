@@ -1,11 +1,11 @@
-html {
-  font-size: 62.5%;
-}
-
 * {
   border:0;
   margin:0;
   padding:0;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
@@ -16,22 +16,53 @@ button {
   outline: none;
 }
 
-/*All stylings for banner*/
-.banner {
-  background-color: #E5F3F2 ;
-  height: 35rem;
-}
-
-.banner-content {
-  width: 60%;
-  margin: auto;
-}
-
 h1 {
   color: #00A79D ;
   font-family: "Roboto Slab", serif;
   font-size: 10rem;
   text-align: center;
+}
+
+h2 {
+  margin-left: 1rem;
+  color: #6D6E71 ;
+  font-family: "Roboto Slab", serif;
+  font-size: 5rem;
+}
+
+h3 {
+  display: inline;
+  position: relative;
+  bottom: .7rem;
+  font-family: "Roboto Slab", serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+p {
+  margin-left: 1rem;
+  font-size: 2.5rem;
+}
+
+hr {
+  height: 1px;
+  margin: 1rem 0 1rem 0;
+  background-color: #D1D3D4 ;
+  border: none;
+}
+
+input::placeholder {
+  color: #d1d3d4;
+}
+
+.banner {
+  height: 35rem;
+  background-color: #E5F3F2 ;
+}
+
+.banner-content {
+  margin: auto;
+  width: 60%;
 }
 
 .h1-style {
@@ -40,128 +71,88 @@ h1 {
 
 .title,
 .task {
-  border: solid #D1D3D4 0.5px;
   box-shadow: 0 0 0 .1rem rgba(187,189,191,0.3);
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  outline: none;
+  padding: 1rem 1rem;
+  width: 100%;
+  border: solid #D1D3D4 0.5px;
   color: #939598 ;
   font-size: 2rem;
   letter-spacing: .05rem;
-  margin-bottom: 2rem;
-  padding: 1rem 1rem;
-  width: 100%;
-  box-sizing: border-box;
-  outline: none;
 }
 
 .completed {
   background-color:#E5F3F2;
   background-image: url(images/checkmark.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
   background-position-x: right;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .completed-task {
   display: block;
   margin-left: 1rem;
   padding: 1rem;
+  width: 20rem;
   background-color: #00A79D;
   color: #FFF; 
-  width: 20rem;
   font-size: 2rem; 
 }
 
 .completed-task img {
-  height: 2rem;
-  width: 2rem;
-  margin: 0 1rem;
   position: relative;
   top: 3px;
+  height: 2rem;
+  margin: 0 1rem;
+  width: 2rem;
 }
 
-/*.completed .completed-task {
-  background-image: url(images/checkmark.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: right;
-}*/
-
 .filter {
-  width: 60%;
   margin: auto;
-  /*text-align: center;*/
+  width: 60%;
 }
 
 .filter-bar {
+  box-sizing: border-box;
+  outline: none;
+  margin: 2rem 0 2rem 0;
+  padding: 1rem 0.5%;
+  width: 100%;
   border: solid #D1D3D4 0.5px;
   color: #939598 ;
   font-size: 2rem;
   letter-spacing: .05rem;
-  padding: 1rem 0.5%;
-  width: 100%;
-  margin: 2rem 0 2rem 0;
-  box-sizing: border-box;
-  outline: none;
-}
-
-input::placeholder {
-  color: #d1d3d4;
 }
 
 .save-button {
+  box-sizing: border-box;
+  padding: 1rem 0;
+  width: 100%;
   background-color: #00A79D;
   color: #FFFFFF ;
   font-size: 2rem;
   text-align: center;
-  padding: 1rem 0;
-  width: 100%;
-  box-sizing: border-box;
 }
 
-/*.completed-todos {
-  text-align: center;
-}*/
-
-/*Resizing delete, up vote, & down vote buttons*/
-
 .two-do-list {
-  /*align-items: center;*/
   display: flex;
   flex-direction: column;
-  width: 60%;
   margin: auto;
+  width: 60%;
 }
 
 .unique-id-style {
   position: relative;
-  width: 100%;
   box-sizing: border-box;
   margin: 0 0 .5rem 0;
+  width: 100%;
 }
 
 .title-output,
 .task-output {
   outline: none;
-}
-
-h2 {
-  color: #6D6E71 ;
-  font-family: "Roboto Slab", serif;
-  font-size: 5rem;
-  margin-left: 1rem;
-}
-
-h3 {
-  display: inline;
-  font-family: "Roboto Slab", serif;
-  font-size: 2rem;
-  font-weight: 400;
-  position: relative;
-  bottom: .7rem;
-}
-
-p {
-  font-size: 2.5rem;
-  margin-left: 1rem;
 }
 
 .critical,
@@ -197,23 +188,23 @@ p {
 }
 
 .show-more-button {
-  width: 100%;
   margin: 1rem 0 4rem 0;
+  width: 100%;
 }
 
 .bottom-section {
-  width: 60%;
   margin: auto;
+  width: 60%;
 }
 
 .delete-button {
-  background-image: url('images/delete.svg'); 
   position: absolute;
   right: .55rem;
   top: 0.35rem;
-  width: 3rem;
   height: 3rem;
+  width: 3rem;
   border-radius: 50%;
+  background-image: url('images/delete.svg'); 
 }
 
 .delete-button:hover {
@@ -222,9 +213,9 @@ p {
 
 .upvote-button,
 .downvote-button {
+  height: 3rem;
   margin: 1rem;
   width: 3rem;
-  height: 3rem;
   border-radius: 50%;
 }
 
@@ -243,24 +234,6 @@ p {
 .downvote-button:hover {
   background-image: url('images/downvote-hover.svg');
 }
-
-hr {
-  background-color: #D1D3D4 ;
-  border: none;
-  height: 1px;
-  margin: 1rem 0 1rem 0;
-}
-
-/*@media screen and (max-width: 1085px) {
-
-  .critical,
-  .high,
-  .normal,
-  .low,
-  .none {
-    width: 10rem;
-  }
-}*/
 
 @media screen and (max-width: 700px) {
 
@@ -298,8 +271,8 @@ hr {
   .high,
   .normal,
   .low {
-    width: 49.4%;
     margin: 0 0 .3rem 0;
+    width: 49.4%;
   }
 
   .none {
@@ -311,8 +284,8 @@ hr {
   }
 
   .completed-task {
-    font-size: 1.5rem;
     width: 16rem;
+    font-size: 1.5rem;
   }
 
   .completed-task img {
