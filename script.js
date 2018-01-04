@@ -159,7 +159,7 @@ Card.prototype.createCard = function () {
     <p class="task-output" contenteditable="true">${this.body}</p>
     <button class="upvote-button"></button>
     <button class="downvote-button"></button>
-    <h3 class="importance">Importance:</h3>
+    <h3 class="importance">Importance: </h3>
     <h3 class="importance-value">${this.importance}</h3>
     <button class="completed-task">Completed: ${this.completed}</button>
     <hr>
