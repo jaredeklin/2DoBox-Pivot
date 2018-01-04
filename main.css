@@ -16,9 +16,14 @@ button {
   outline: none;
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Roboto Slab", serif;
+}
+
 h1 {
   color: #00A79D ;
-  font-family: "Roboto Slab", serif;
   font-size: 10rem;
   text-align: center;
 }
@@ -26,7 +31,7 @@ h1 {
 h2 {
   margin-left: 1rem;
   color: #6D6E71 ;
-  font-family: "Roboto Slab", serif;
+  /*font-family: "Roboto Slab", serif;*/
   font-size: 5rem;
 }
 
@@ -34,7 +39,7 @@ h3 {
   display: inline;
   position: relative;
   bottom: .7rem;
-  font-family: "Roboto Slab", serif;
+  /*font-family: "Roboto Slab", serif;*/
   font-size: 2rem;
   font-weight: 400;
 }
@@ -155,6 +160,10 @@ input::placeholder {
   outline: none;
 }
 
+.importance-buttons {
+  display: flex;
+}
+
 .critical,
 .high,
 .normal,
@@ -162,7 +171,8 @@ input::placeholder {
 .none,
 .show-more-button,
 .show-completed-button {
-  width: 19.5%;
+  width: 20%;
+  border: 1px solid;
   padding: 1rem;
   background-color: #00a79d;
   color: #fff;
@@ -184,7 +194,7 @@ input::placeholder {
 .show-completed-button {
   margin: 1rem 0 1rem 0;
   padding: 1rem;
-  width: 99.7%;
+  width: 100%;
 }
 
 .show-more-button {
@@ -265,6 +275,11 @@ input::placeholder {
 
   .banner {
     height: 27rem;
+  }
+
+  .importance-buttons {
+    display: inline-block;
+    width: 100%;
   }
 
   .critical,
